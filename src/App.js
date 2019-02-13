@@ -1,10 +1,7 @@
 import React from 'react';
 
-import Todo from './components/TodoComponents/Todo';
 import TodoForm from './components/TodoComponents/TodoForm';
 import TodoList from './components/TodoComponents/TodoList';
-
-const todos = [];
 
 class App extends React.Component {
   constructor() {
@@ -12,7 +9,7 @@ class App extends React.Component {
 
     this.state = {
       todoField: '',
-      todos: todos
+      todos: []
     }
   }
 
@@ -22,13 +19,16 @@ class App extends React.Component {
     })
   }
 
-  // On form submission take input data and save it to state
   handleSubmit = e => {
     e.preventDefault();
 
+    if (this.state.todoField === '') {
+      console.log(`Make sure your todo isn't empty!`)
+    }
+
     const newTodo = {
       task: this.state.todoField,
-      id: data.now(),
+      id: Date.now(),
       completed: false
     }
 
@@ -41,6 +41,9 @@ class App extends React.Component {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
+
+        <TodoList todos={this.state.todos} />
+
         <TodoForm
           handleSubmit={this.handleSubmit}
           onChange={this.handleChanges}
