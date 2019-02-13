@@ -3,13 +3,15 @@ import React from 'react';
 import TodoForm from './components/TodoComponents/TodoForm';
 import TodoList from './components/TodoComponents/TodoList';
 
+const todos = [];
+
 class App extends React.Component {
   constructor() {
     super()
 
     this.state = {
       todoField: '',
-      todos: []
+      todos
     }
   }
 
@@ -33,20 +35,35 @@ class App extends React.Component {
     }
 
     this.setState({
-      todos: [...this.state.todos, newTodo],
-      todoField: ''
+      todoField: '',
+      todos: [...this.state.todos, newTodo]
     })
   }
 
-  handleComplete = e => {
+  handleToggleComplete = id => {
+    let todos = this.state.todos.slice();
+    todos = todos.map(todo => {
+      if (todo.id === id) {
+        todo.completed = !todo.completed;
+        return todo;
+      }
 
+      return todo
+    });
+
+    this.setState({ todos });
   }
 
   render() {
     return (
       <div>
         <h2>Todo App!</h2>
-        <TodoList todos={this.state.todos} />
+
+        <TodoList
+          handleToggleComplete={this.handleToggleComplete}
+          todos={this.state.todos}
+        />
+
         <TodoForm
           handleSubmit={this.handleSubmit}
           onChange={this.handleChanges}

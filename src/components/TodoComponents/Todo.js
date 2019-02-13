@@ -2,8 +2,8 @@ import React from 'react';
 
 const Todo = props => {
     return (
-        <div>
-            {props.task}
+        <div onClick={() => props.handleToggleComplete(props.todo.id)}>
+            {props.todo.task}
         </div>
     )
 }
