@@ -9,7 +9,7 @@ const TodoForm = props => {
                     name="todo"
                     placeholder="Enter a todo"
                     value={props.todo}
-                    onChange={props.handleChanges}
+                    onChange={props.onChange}
                 />
             </form>
         </div>

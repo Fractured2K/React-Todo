@@ -9,15 +9,24 @@ class App extends React.Component {
     super()
 
     this.state = {
-
+      todo: ''
     }
+  }
+
+  handleChanges = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
   }
 
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoForm />
+        <TodoForm
+          todo={this.state.todo}
+          onChange={this.handleChanges}
+        />
       </div>
     );
   }
