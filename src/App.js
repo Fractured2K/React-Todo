@@ -33,17 +33,20 @@ class App extends React.Component {
     }
 
     this.setState({
-      todos: [...this.state.todos, newTodo]
+      todos: [...this.state.todos, newTodo],
+      todoField: ''
     })
+  }
+
+  handleComplete = e => {
+
   }
 
   render() {
     return (
       <div>
-        <h2>Welcome to your Todo App!</h2>
-
+        <h2>Todo App!</h2>
         <TodoList todos={this.state.todos} />
-
         <TodoForm
           handleSubmit={this.handleSubmit}
           onChange={this.handleChanges}
