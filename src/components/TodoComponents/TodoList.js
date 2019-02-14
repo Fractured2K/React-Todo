@@ -7,7 +7,7 @@ const TodoList = props => {
         <div>
             {props.todos.map(todo => (
                 <Todo handleToggleComplete={props.handleToggleComplete} key={todo.id} todo={todo} />
-            ))}
+            )).reverse()}
         </div>
     )
 }

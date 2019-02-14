@@ -2,7 +2,9 @@ import React from 'react';
 
 import TodoForm from './components/TodoComponents/TodoForm';
 import TodoList from './components/TodoComponents/TodoList';
-import './components/TodoComponents/Todo.css';
+
+import './reset.css';
+import './app.css';
 
 const todos = [];
 
@@ -26,7 +28,7 @@ class App extends React.Component {
     e.preventDefault();
 
     if (this.state.todoField === '') {
-      alert(`Input cannont be blank!`)
+      return alert(`Input cannont be blank!`)
     }
 
     const newTodo = {
@@ -57,20 +59,19 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>Todo App!</h2>
-
-        <TodoList
-          handleToggleComplete={this.handleToggleComplete}
-          todos={this.state.todos}
-        />
-
+      <div className="container">
         <TodoForm
           handleSubmit={this.handleSubmit}
           handleHideCompleted={this.handleHideCompleted}
           onChange={this.handleChanges}
           todo={this.state.todoField}
         />
+
+        <TodoList
+          handleToggleComplete={this.handleToggleComplete}
+          todos={this.state.todos}
+        />
+
       </div>
     );
   }
