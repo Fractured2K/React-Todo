@@ -26,7 +26,7 @@ class App extends React.Component {
     e.preventDefault();
 
     if (this.state.todoField === '') {
-      console.log(`Make sure your todo isn't empty!`)
+      alert(`Input cannont be blank!`)
     }
 
     const newTodo = {
@@ -41,18 +41,18 @@ class App extends React.Component {
     })
   }
 
-  handleToggleComplete = id => {
-    let todos = this.state.todos.slice();
-    todos = todos.map(todo => {
-      if (todo.id === id) {
-        todo.completed = !todo.completed;
-        return todo;
-      }
+  handleToggleComplete = todoId => {
+    this.setState({
+      todos: this.state.todos.map(todo => todoId === todo.id ? { ...todo, completed: !todo.completed } : todo)
+    })
+  }
 
-      return todo
-    });
+  handleHideCompleted = e => {
+    e.preventDefault();
 
-    this.setState({ todos });
+    this.setState({
+      todos: this.state.todos.filter(todo => !todo.completed)
+    })
   }
 
   render() {
@@ -67,6 +67,7 @@ class App extends React.Component {
 
         <TodoForm
           handleSubmit={this.handleSubmit}
+          handleHideCompleted={this.handleHideCompleted}
           onChange={this.handleChanges}
           todo={this.state.todoField}
         />
