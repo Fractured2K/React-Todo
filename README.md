@@ -1,4 +1,4 @@
-# Deployed App Netlify
+# Deployed App to Netlify
 - https://sharp-payne-7922d5.netlify.com/
 
 # React-Todo
